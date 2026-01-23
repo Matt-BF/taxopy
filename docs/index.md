@@ -1,3 +1,7 @@
+---
+icon: lucide/sparkles
+---
+
 # Introduction
 
 ## About `taxopy`

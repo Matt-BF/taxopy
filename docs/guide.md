@@ -1,3 +1,7 @@
+---
+icon: lucide/book-marked
+---
+
 # Guide
 
 ## Initializing a taxonomy database in a `TaxDb` object
@@ -92,7 +96,7 @@ OrderedDict({'order': 'Lagomorpha', 'clade': 'Opisthokonta', 'superorder': 'Euar
 order
 ```
 
-A taxon's scientific name is stored in the `name` field, while `all_names` is a dictionary from the kind of name to a list of names. 
+A taxon's scientific name is stored in the `name` field, while `all_names` is a dictionary from the kind of name to a list of names.
 
 ```pycon
 >>> sus = taxopy.Taxon(9823, taxdb)

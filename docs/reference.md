@@ -1,4 +1,8 @@
-# Reference
+---
+icon: lucide/code
+---
+
+# API reference
 
 ::: taxopy.TaxDb
 
