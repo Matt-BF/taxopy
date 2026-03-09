@@ -1,7 +1,7 @@
 ---
-title: "Taxopy: A Python package for obtaining complete lineages and the lowest common ancestor (LCA) from a set of taxonomic identifiers"
+title: "`Taxopy`: A Python package for obtaining complete lineages and the lowest common ancestor (LCA) from a set of taxonomic identifiers"
 tags:
-  - Python
+  - python
   - biology
   - evolution
   - computational mechanics
@@ -26,36 +26,50 @@ bibliography: paper.bib
 
 # Summary
 
-A description of the high-level functionality and purpose of the software for a diverse, non-specialist audience.
+Dobzhansky once famously said, "Nothing in biology makes sense except in the light of evolution". Indeed, without an evolutionary perspective, hypothesis testing of biological systems would be severely limited to simple data analysis. This is especially true in the age of big data, where large datasets of genomic, transcriptomic, and proteomic information are being generated at an unprecedented rate.
 
-Dobzhansky once famously said, "Nothing in biology makes sense except in the light of evolution". Indeed, without an evolutionary perspective, hypothesis testing of biological systems would be severely limited into simple data analysis. This is especially true in the age of big data, where large datasets of genomic, transcriptomic, and proteomic information are being generated at an unprecedented rate.
-
-Taxonomic classifications provide a framework for organizing this diversity and allow comparative evolutionary studies across different species. However, obtaining complete lineages and the lowest common ancestor (LCA) from a set of taxonomic identifiers has been historically a complex task, especially when dealing with large datasets. Furthermore, there are different standards for taxonomic classification, such as NCBI taxonomy [@schoch2020] and GTDB [@parks2025](for prokaryotes), which can lead to inconsistencies and difficulties in data integration.
-
-Here we present [Taxopy](https://github.com/apcamargo/taxopy), a Python package designed to simplify the process of obtaining taxonomic ranks and lineages by providing an easy-to-use interface for retrieving information from various databases. Taxopy allows users to obtain complete lineages by mapping against taxdump files (a format implemented by several taxonomic databases) either through a numeric identifier or by using the taxa name. Furthermore, the package contains helper functions to retrieve the LCA from a list of taxonomic identifiers, as well as compute the majority vote when comparing between taxa where a subset is more distantly related. Taxopy is particularly useful for researchers working with large datasets, as it streamlines the process of taxonomic classification and facilitates comparative evolutionary analyses.
+`Taxopy` is a Python package that provides an accessible programmatic interface for navigating these complex evolutionary relationships. It allows researchers to seamlessly convert basic taxonomic identifiers into complete evolutionary lineages, find the lowest common ancestor (LCA) among groups of organisms, and translate between different taxonomic databases. By handling the heavy lifting of taxonomic data parsing, `Taxopy` enables biologists and bioinformaticians to easily integrate evolutionary context into their data analysis workflows.
 
 # Statement of need
 
-A section that clearly illustrates the research purpose of the software and places it in the context of related work. This should clearly state what problems the software is designed to solve, who the target audience is, and its relation to other work.
+Obtaining complete lineages and the lowest common ancestor (LCA) from a set of taxonomic identifiers has historically been a complex task, especially when dealing with large datasets. Furthermore, differing standards for taxonomic classification, such as the National Center for Biotechnology Information (NCBI) taxonomy [@schoch2020] and the Genome Taxonomy Database GTDB [@parks2025] for prokaryotes, often lead to inconsistencies and difficulties in data integration.
+
+To map taxonomic lineages to numeric identifiers and compute relationships between organisms, several bioinformatics tools utilize "taxdumps", a file format pioneered by NCBI. However, parsing and utilizing these taxdump files outside of specialized programs is non-trivial.
+
+`Taxopy` is a python package designed to simplify the retrieval of taxonomic ranks and lineages for researchers from any biological field, by allowing users to obtain complete lineages by mapping numeric identifiers or taxa names directly against taxdump files. Furthermore, the package contains helper functions to retrieve the LCA from a list of taxonomic identifiers, as well as to compute a majority-vote consensus when comparing taxa where a subset is more distantly related. `Taxopy` is particularly useful for researchers working with large datasets, as it streamlines taxonomic classification and facilitates comparative evolutionary analyses.
 
 # State of the field
 
-A description of how this software compares to other commonly-used packages in the research area. If related tools exist, provide a clear “build vs. contribute” justification explaining your unique scholarly contribution and why existing alternatives are insufficient.
+Several tools currently exist to facilitate taxonomic data manipulation, such as the `ETE toolkit` [@huerta-cepas2016], `taxize` and `Taxonkit` [@shen2021]. Below we list the main attributes of each of these programs:
+
+- `ETE toolkit`: a python package mostly tailored for manipulating phylogenies and hypothesis testing via integration with the PAML suite, but also includes some taxonomy parsing helpers.
+
+- `taxize`: an R package that maps taxonomic data via web APIs across many sources, and does not rely on taxdump files.
+
+- `Taxonkit`: a CLI tool designed for high-throughput shell manipulation of taxonomic data, capable of creating novel taxdump files.
+
+While these tools offer overlapping functionalities, such as programmatic access to hierarchical taxonomy operations, identifier resolution, and LCA computation, `Taxopy` is uniquely positioned in the ecosystem. First, it is designed to be integrated into custom python workflows, or used as a lightweight dependency for other python libraries leveraging its low-level functions. Second, `Taxopy` provides specialized functions to calculate the majority vote between distantly related taxa when a LCA would be too broad, and handle inconsistencies between different taxonomic database by converting names between different taxdumps.
 
 # Software design
 
-An explanation of the trade-offs you weighed, the design/architecture you chose, and why it matters for your research application. This should demonstrate meaningful design thinking beyond a superficial code structure description.
+The core design of `Taxopy` is around the `Taxon` object, from which all taxonomic attributes stem. To initialize a `Taxon`, a taxdump file is required. `Taxopy` enables users to easily download or pass a taxdump through the flexible `TaxDb` object, which then eagerly parses the taxdump into python dictionaries to allow for rapid, in-memory searches.
+
+Once a `Taxon` object is initialized, users can explore different lineage attributes, including the hierarchical organization (which allows retrieving the parent lineage), alternative taxa names, and the full lineage (including sublineages). The API provides users the flexibility to format the returned objects as needed; for instance, leveraging the `Taxon.rank_name_dictionary` method to generate a Greengenes-formatted string [@mcdonald2023], a standard widely used for taxonomic representation in microbiome research.
+
+To ensure broad compatibility and minimize dependencies, `Taxopy` is designed as a mostly pure-Python package. It relies only on `flit_core` for PyPI deployment, `pytest` for testing, and the optional `rapidfuzz` dependency to enable fuzzy searching of partial name matches via the `taxid_from_name` utility function. Consequently, the internal objects are implemented using native Python dictionaries and standard library data structures, ensuring a lightweight footprint and fast execution times.
 
 # Research impact statement
 
-Evidence of realized impact (publications, external use, integrations) or credible near-term significance (benchmarks, reproducible materials, community-readiness signals). The evidence should be compelling and specific, not aspirational.
+`Taxopy` has seen positive reception and adoption within the bioinformatics community. Since its release, the package has accrued over 59,000 downloads on Bioconda, garnered more than 50 GitHub stars, and generated several forks, demonstrating its active use in the open-source ecosystem. Furthermore, it has been cited in several preprints and peer-reviewed publications, confirming its utility in active research.
 
 # AI usage disclosure
 
-Transparent disclosure of any use of generative AI in the software creation, documentation, or paper authoring. If no AI tools were used, state this explicitly. If AI tools were used, describe how they were used and how the quality and correctness of AI-generated content was verified.
+Generative AI (Codex) was used to aid in writing comprehensive unit tests for the software; all generated code was manually reviewed and revised by the authors for soundness. Google Gemini was used for grammar correction and structural editing of this manuscript.
 
 # Acknowledgements
 
-A.P.C wrote the software and revised the manuscript M.B.F revised the software and wrote the manuscript
+A.P.C wrote the software and revised the manuscript
+
+M.B.F revised the software and wrote the manuscript
 
 # References
