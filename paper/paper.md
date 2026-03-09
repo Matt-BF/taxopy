@@ -4,7 +4,7 @@ tags:
   - python
   - biology
   - evolution
-  - computational mechanics
+  - bioinformatics
 
 authors:
   - name: Antonio Pedro Camargo
@@ -26,7 +26,7 @@ bibliography: paper.bib
 
 # Summary
 
-Dobzhansky once famously said, "Nothing in biology makes sense except in the light of evolution". Indeed, without an evolutionary perspective, hypothesis testing of biological systems would be severely limited to simple data analysis. This is especially true in the age of big data, where large datasets of genomic, transcriptomic, and proteomic information are being generated at an unprecedented rate.
+Dobzhansky once famously said, "Nothing in biology makes sense except in the light of evolution" [@dobzhansky1964]. Indeed, without an evolutionary perspective, hypothesis testing of biological systems would be severely limited to simple data analysis. This is especially true in the age of big data, where large datasets of genomic, transcriptomic, and proteomic information are being generated at an unprecedented rate.
 
 `Taxopy` is a Python package that provides an accessible programmatic interface for navigating these complex evolutionary relationships. It allows researchers to seamlessly convert basic taxonomic identifiers into complete evolutionary lineages, find the lowest common ancestor (LCA) among groups of organisms, and translate between different taxonomic databases. By handling the heavy lifting of taxonomic data parsing, `Taxopy` enables biologists and bioinformaticians to easily integrate evolutionary context into their data analysis workflows.
 
@@ -40,7 +40,7 @@ To map taxonomic lineages to numeric identifiers and compute relationships betwe
 
 # State of the field
 
-Several tools currently exist to facilitate taxonomic data manipulation, such as the `ETE toolkit` [@huerta-cepas2016], `taxize` and `Taxonkit` [@shen2021]. Below we list the main attributes of each of these programs:
+Several tools currently exist to facilitate taxonomic data manipulation, such as the `ETE toolkit` [@huerta-cepas2016], [`taxize`](https://github.com/ropensci/taxize) and `Taxonkit` [@shen2021]. Below we list the main attributes of each of these programs:
 
 - `ETE toolkit`: a python package mostly tailored for manipulating phylogenies and hypothesis testing via integration with the PAML suite, but also includes some taxonomy parsing helpers.
 
@@ -60,7 +60,7 @@ To ensure broad compatibility and minimize dependencies, `Taxopy` is designed as
 
 # Research impact statement
 
-`Taxopy` has seen positive reception and adoption within the bioinformatics community. Since its release, the package has accrued over 59,000 downloads on Bioconda, garnered more than 50 GitHub stars, and generated several forks, demonstrating its active use in the open-source ecosystem. Furthermore, it has been cited in several preprints and peer-reviewed publications, confirming its utility in active research.
+`Taxopy` has seen positive reception and adoption within the scientific community. Since its release, the package has accrued over 59 thousand downloads on Bioconda, has more than 50 GitHub stars, and generated several forks, demonstrating its active use in the open-source ecosystem. Furthermore, it has been cited in several peer-reviewed publications [@camargo2023; @fiamenghi2025; @fiamenghi2025a; @shen2021a], confirming its utility in active research.
 
 # AI usage disclosure
 
