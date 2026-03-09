@@ -219,6 +219,20 @@ for t in taxopy.taxid_from_name(
     Myxococcota
     Myxococcaceae
 
+## Running tests
+
+Install the test dependencies and run the default test suite with `uv`:
+
+```bash
+uv run --extra test pytest
+```
+
+The repository also includes integration tests that download the taxonomy dump through `taxopy` itself. These tests are skipped by default because they require network access and depend on the current NCBI taxonomy data. Run them explicitly with:
+
+```bash
+uv run --extra test pytest --run-network
+```
+
 ## Acknowledgements
 
 Some of the code used in taxopy was taken from the [CAT/BAT tool for taxonomic classification of contigs and metagenome-assembled genomes](https://github.com/dutilh/CAT).
