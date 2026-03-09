@@ -8,7 +8,7 @@
 
 ## Installation
 
-There are two ways to install `taxopy`:
+There are several ways to install `taxopy`:
 
   - Using pip:
 
@@ -16,10 +16,34 @@ There are two ways to install `taxopy`:
 pip install taxopy
 ```
 
+  - Using uv:
+
+```
+uv init example
+cd example
+uv add taxopy
+```
+
   - Using conda:
 
 ```
-conda install -c conda-forge -c bioconda taxopy
+conda create -n taxopy-env -c conda-forge -c bioconda taxopy
+conda activate taxopy-env
+```
+
+  - Using pixi:
+
+```
+pixi init --channel conda-forge --channel bioconda example
+cd example
+pixi add taxopy
+```
+
+  - Using mamba:
+
+```
+mamba create -n taxopy-env -c conda-forge -c bioconda taxopy
+mamba activate taxopy-env
 ```
 
 > [!NOTE]
