@@ -42,7 +42,7 @@ To map taxonomic lineages to numeric identifiers and compute relationships betwe
 
 Several tools currently exist to facilitate taxonomic data manipulation, such as the `ETE toolkit` [@huerta-cepas2016], [`taxize`](https://github.com/ropensci/taxize) and `Taxonkit` [@shen2021]. Below we list the main attributes of each of these programs:
 
-- `ETE toolkit`: a python package mostly tailored for manipulating phylogenies and hypothesis testing via integration with the PAML suite, but also includes some taxonomy parsing helpers.
+- `ETE toolkit`: a python package mostly tailored for manipulating phylogenies and hypothesis testing via CodeML [@yang2002] and Slr [@massingham2005], but also includes some taxonomy parsing helpers.
 
 - `taxize`: an R package that maps taxonomic data via web APIs across many sources, and does not rely on taxdump files.
 
